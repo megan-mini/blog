@@ -1,0 +1,26 @@
+---
+title: Histograms
+author: Megan Minihane
+date: '2017-12-01'
+slug: histograms
+categories:
+  - R
+tags: []
+---
+
+Histograms, like bar graphs, allow you to visualize your data except with only one value of information.
+```{r warning=FALSE, message=FALSE}
+library(Lahman)
+library(sqldf)
+library(ggplot2)
+
+query<-"SELECT weight
+FROM Master"
+
+result<-sqldf(query)
+
+ggplot()+
+  geom_histogram(data=result,aes(x=weight),color="Blue",fill="Orange",bins=50)+
+  ggtitle("Body Weight Distribution for Baseball Players")
+
+```

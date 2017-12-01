@@ -1,0 +1,34 @@
+---
+title: Time Series
+author: Megan Minihane
+date: '2017-12-01'
+slug: time-series
+categories:
+  - R
+tags: []
+---
+
+
+
+<p>Most commonly, a time series is a sequence taken at successive equally spaced points in time. They are very simialr to scatter plots.</p>
+<pre class="r"><code>library(Lahman)
+library(sqldf)
+library(ggplot2)
+
+# Extraction----------------------------
+
+query&lt;-&quot;SELECT yearID,HR
+FROM Batting
+WHERE playerID=&#39;ruthba01&#39;&quot;
+
+result&lt;-sqldf(query)
+
+# Visualization-------------------------
+
+ggplot()+
+  #geom_point(data=result,aes(x=yearID,y=HR))+
+  geom_line(data=result,aes(x=yearID,y=HR))+
+  ggtitle(&quot;Ruth&#39;s Homerun Totals Throughout the Years&quot;)+
+  xlab(&quot;Year&quot;)+
+  ylab(&quot;Homeruns&quot;)</code></pre>
+<p><img src="/post/2017-12-01-time-series_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
